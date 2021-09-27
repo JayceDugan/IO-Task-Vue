@@ -1,13 +1,19 @@
 <template>
   <v-form class="fill-height">
-    <v-container fluid class="fill-height align-start">
+    <v-container
+      class="fill-height align-start"
+      fluid
+    >
       <v-row>
         <v-col cols="12">
           <h4
-            class="text-h5"
             :class="state.loading ? 'text--disabled' : ''"
+            class="text-h5"
           >
-            <v-icon left color="blueGrey">
+            <v-icon
+              color="blueGrey"
+              left
+            >
               mdi-image-outline
             </v-icon>
 
@@ -16,17 +22,20 @@
 
           <v-file-input
             v-model="form.Cover"
-            prepend-icon=""
-            placeholder="Select or drag image"
             :disabled="state.loading"
+            placeholder="Select or drag image"
+            prepend-icon=""
           />
         </v-col>
         <v-col cols="12">
           <h4
-            class="text-h5"
             :class="state.loading ? 'text--disabled' : ''"
+            class="text-h5"
           >
-            <v-icon left color="blueGrey">
+            <v-icon
+              color="blueGrey"
+              left
+            >
               mdi-information-outline
             </v-icon>
 
@@ -41,32 +50,52 @@
           </input-label>
           <v-text-field
             v-model="form.Name"
-            :rules="rules.name"
             :disabled="state.loading"
-            label="Enter project name"
-            hide-details="auto"
-            outlined
+            :rules="rules.name"
             flat
-            solo
+            hide-details="auto"
+            label="Enter project name"
+            outlined
             required
+            solo
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12">
+          <input-label
+            :class="state.loading ? 'text--disabled' : ''"
+          >
+            Project UUID
+          </input-label>
+          <v-text-field
+            v-model="form.UUID"
+            :disabled="state.loading"
+            flat
+            hide-details="auto"
+            label="Enter project uuid"
+            outlined
+            required
+            solo
           ></v-text-field>
         </v-col>
         <v-col cols="12">
           <input-label>Category</input-label>
           <v-select
             v-model="form.Category"
-            :items="categoryOptions"
-            label="Please select category"
-            :menu-props="{ bottom: true, offsetY: true }"
             :disabled="state.loading"
-            outlined
+            :items="categoryOptions"
+            :menu-props="{ bottom: true, offsetY: true }"
             flat
-            solo
-            required
             hide-details="auto"
+            label="Please select category"
+            outlined
+            required
+            solo
           ></v-select>
         </v-col>
-        <v-col cols="12" md="6">
+        <v-col
+          cols="12"
+          md="6"
+        >
           <input-label
             :class="state.loading ? 'text--disabled' : ''"
           >
@@ -76,33 +105,36 @@
             v-model="menus.Due"
             :close-on-content-click="false"
             :nudge-right="0"
-            transition="scale-transition"
-            offset-y
             min-width="auto"
+            offset-y
+            transition="scale-transition"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
-                :value="form.Due"
-                :disabled="state.loading"
-                label="Please Select Date"
-                append-icon="mdi-calendar"
-                hide-details="auto"
-                outlined
-                flat
-                solo
-                readonly
                 v-bind="attrs"
                 v-on="on"
+                :disabled="state.loading"
+                :value="form.Due"
+                append-icon="mdi-calendar"
+                flat
+                hide-details="auto"
+                label="Please Select Date"
+                outlined
+                readonly
+                solo
               ></v-text-field>
             </template>
             <v-date-picker
               v-model="form.Due"
-              @input="menus.dueDate = false"
               :disabled="state.loading"
+              @input="menus.dueDate = false"
             />
           </v-menu>
         </v-col>
-        <v-col cols="12" md="6">
+        <v-col
+          cols="12"
+          md="6"
+        >
           <input-label
             :class="state.loading ? 'text--disabled' : ''"
           >
@@ -110,15 +142,15 @@
           </input-label>
           <v-text-field
             v-model.number="form.Budget"
-            type="number"
-            :rules="rules.budget"
-            label="Please set budget"
-            hide-details="auto"
             :disabled="state.loading"
-            outlined
+            :rules="rules.budget"
             flat
-            solo
+            hide-details="auto"
+            label="Please set budget"
+            outlined
             required
+            solo
+            type="number"
           />
         </v-col>
         <v-col cols="12">
@@ -130,38 +162,45 @@
           <v-combobox
             v-model="form.project_members"
             :disabled="state.loading"
-            label="Invite Members"
-            hide-details="auto"
-            outlined
             flat
-            solo
+            hide-details="auto"
+            label="Invite Members"
+            multiple
+            outlined
             required
             small-chips
-            multiple
+            solo
           />
         </v-col>
       </v-row>
       <v-row class="mt-auto">
         <v-col cols="12">
-          <v-slide-x-transition mode="out-in" appear>
-            <p v-if="state.error" class="error--text">
+          <v-slide-x-transition
+            appear
+            mode="out-in"
+          >
+            <p
+              v-if="state.error"
+              class="error--text"
+            >
               A problem occurred while creating this project, please try again.
             </p>
           </v-slide-x-transition>
           <section class="d-flex align-center justify-space-between">
             <v-btn
-              color="primary"
               :disabled="!form.Name || state.loading"
               :loading="state.loading"
+              color="primary"
               @click="createProjectHandler"
             >
               Create Project
             </v-btn>
             <v-btn
-              color="grey"
               :disabled="state.loading"
+              color="grey"
               @click="cancelHandler"
-            >Cancel</v-btn>
+            >Cancel
+            </v-btn>
           </section>
         </v-col>
       </v-row>
@@ -188,13 +227,14 @@ export default {
     },
     form: {
       Name: '',
+      UUID: '',
       Category: '',
       Due: '',
       Cover: {},
       Budget: '',
       project_members: ['john.doe@gmail.com', 'lally.smith@gmail.com', 'tommy.montana@gmail.com'],
     },
-    categoryOptions: ['CategoryA'],
+    categoyOptions: ['Category A'],
     rules: {
       name: [
         (v) => !!v || 'Project name is required',

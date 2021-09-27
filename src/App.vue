@@ -61,19 +61,4 @@ body {
   overflow-x: hidden;
 }
 
-.container.fill-height > .row {
-  max-width: initial;
-  width: 100%;
-}
-
-.container.fill-height {
-  flex-direction: column !important;
-  align-items: initial !important;
-}
-
-.container.fill-height > .row {
-  flex: 1 1 auto !important;
-
-  &.flex-grow-0 { flex-grow: 0 !important; }
-}
 </style>

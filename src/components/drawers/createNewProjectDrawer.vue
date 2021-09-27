@@ -17,10 +17,10 @@
       </h3>
     </template>
 
-    <create-new-project-form
-      @saved="$emit('input', false)"
-      @cancel="$emit('input', false)"
-    />
+    <create-new-project-form @saved="$emit('input', false)" @cancel="$emit('input', false)" />
+
+<!--    <forms-->
+<!--    />-->
   </v-navigation-drawer>
 </template>
 
