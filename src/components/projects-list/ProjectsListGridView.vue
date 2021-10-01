@@ -1,7 +1,7 @@
 <template>
   <v-container
     fluid
-    class="greyAlt pa-0"
+    class="greyAlt pa-0 project-card"
   >
     <v-slide-x-transition mode="out-in" appear>
       <v-row v-if="loading">
@@ -18,12 +18,18 @@
       <v-row v-else-if="projects.length > 0">
         <v-col
           v-for="project in projects"
-          :key="project.id"
+          :key="project.UUID"
           cols="12"
           md="4"
           lg="3"
         >
-          <project-card :project="project" viewType="grid" />
+          <v-hover v-slot="{ hover }">
+            <project-card
+              :project="project"
+              :hover="hover"
+              viewType="grid"
+            />
+          </v-hover>
         </v-col>
       </v-row>
       <v-row v-else>

@@ -5,80 +5,62 @@
       color="grey"
     >
       <v-img
-        v-if="project.Cover"
-        :src="config.baseDomain.concat(project.Cover.formats.thumbnail.url)"
-        :lazy-src="config.baseDomain.concat(project.Cover.formats.thumbnail.url)"
-        :alt="project.Cover.alternativeText"
+        v-if="$_project_cover"
+        :src="$_project_cover_src"
+        :lazy-src="$_project_cover_lazy_src"
+        :alt="$_project_cover_alt_text"
         width="50"
         height="100"
       />
       <span v-else>
-        {{ projectAcronym }}
+        {{ $_project_acronym }}
       </span>
     </v-avatar>
 
-    <v-card-title class="justify-center text-h3">
-      {{ project.Name }}
+    <v-card-title
+      class="justify-center text-h3 css-transition"
+      :class="{ 'primary--text': hover }"
+    >
+      {{ $_project_name }}
     </v-card-title>
     <v-card-subtitle class="blueGreyAlt--text mb-8">
-      Due to: {{ project.Due | projectDate }}
+      Due to: {{ $_project_due | projectDate }}
     </v-card-subtitle>
 
     <v-card-text>
       <v-btn
-        v-for="(category, index) in project.Categories"
+        v-for="(category, index) in $_project_categories"
         :key="category.Key"
         color="grey"
         class="text-capitalize mb-9"
         :class="{
-          'mr-3': (index !== project.Categories.length - 1)
+          'mr-3': (index !== $_project_categories.length - 1)
         }"
-        disabled
       >
         {{ category.Label }}
       </v-btn>
     </v-card-text>
 
-    <overlapping-avatar-list :avatars="projectUserAvatars" class="justify-center" />
+    <overlapping-avatar-list :avatars="$_project_users_images_arr" class="justify-center" />
   </section>
 </template>
 
 <script>
-import dayjs from 'dayjs';
-import config from '@/lib/strapi/utils/config';
 import OverlappingAvatarList from '@/components/overlapping-avatar-list/OverlappingAvatarList.vue';
+import projectMixin from '@/mixins/project';
 
 export default {
   name: 'ProjectCardGridView',
   components: { OverlappingAvatarList },
+  mixins: [projectMixin],
   props: {
     project: {
       type: Object,
       required: true,
     },
-  },
-  filters: {
-    projectDate: (val) => {
-      if (!val) return '';
-
-      return dayjs(val).format('DD MMM YYYY');
-    },
-  },
-  data: () => ({
-    config,
-  }),
-  computed: {
-    projectAcronym() {
-      return this.project.Name !== null
-        ? this.project.Name.match(/\b\w/g).join('')
-        : '';
-    },
-    projectUserAvatars() {
-      if (this.project.users.length <= 0) return [];
-
-      return this.project.users.map((user) => config.baseDomain.concat(
-        user?.Avatar?.formats?.thumbnail?.url,
-      ));
+    hover: {
+      type: Boolean,
+      required: true,
     },
   },
 };

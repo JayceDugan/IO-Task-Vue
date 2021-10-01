@@ -234,7 +234,7 @@ export default {
       Budget: '',
       project_members: ['john.doe@gmail.com', 'lally.smith@gmail.com', 'tommy.montana@gmail.com'],
     },
-    categoyOptions: ['Category A'],
+    categoryOptions: ['Category A'],
     rules: {
       name: [
         (v) => !!v || 'Project name is required',
