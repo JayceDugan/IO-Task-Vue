@@ -32,6 +32,7 @@ export default {
 .container.fill-height {
   flex-direction: column !important;
   align-items: initial !important;
+  flex-wrap: nowrap !important;
 }
 
 .container.fill-height > .row {
