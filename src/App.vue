@@ -44,21 +44,28 @@ export default {
 <style lang="scss">
 html,
 body {
-  overflow: hidden;
+  overflow-y: hidden;
 }
 
-.v-application {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow: hidden;
+.v-application--wrap {
+  max-height: 100vh;
+}
+
+.v-main {
+  height: 100%;
 }
 
 .v-main__wrap {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+.cursor--pointer {
+  cursor: pointer;
+}
+
+.css-transition {
+  transition: all 250ms ease-in-out;
 }
 
 </style>
