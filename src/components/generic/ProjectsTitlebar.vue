@@ -1,28 +1,32 @@
 <template>
   <section class="d-flex justify-space-between">
     <v-spacer />
-    <v-btn
-      color="blueGrey"
-      plain
-      :disabled="noProjects"
-      @click="setLayout('list')"
-    >
-      <v-icon left>
-        mdi-format-list-bulleted-square
-      </v-icon>
-      List
-    </v-btn>
-    <v-btn
-      color="blueGrey"
-      plain
-      :disabled="noProjects"
-      @click="setLayout('grid')"
-    >
-      <v-icon left>
-        mdi-view-grid
-      </v-icon>
-      Grid
-    </v-btn>
+    <v-hover v-slot="{ hover }">
+      <v-btn
+        :color="hover ? 'primary' : 'blueGrey'"
+        plain
+        :disabled="noProjects"
+        @click="setLayout('list')"
+      >
+        <v-icon left>
+          mdi-format-list-bulleted-square
+        </v-icon>
+        List
+      </v-btn>
+    </v-hover>
+    <v-hover v-slot="{ hover }">
+      <v-btn
+        :color="hover ? 'primary' : 'blueGrey'"
+        plain
+        :disabled="noProjects"
+        @click="setLayout('grid')"
+      >
+        <v-icon left>
+          mdi-view-grid
+        </v-icon>
+        Grid
+      </v-btn>
+    </v-hover>
     <v-btn
       color="primary"
       plain

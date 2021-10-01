@@ -3,11 +3,12 @@ import Vuex from 'vuex';
 import user from '@/store/user';
 import auth from '@/store/auth';
 import projects from '@/store/projects';
+import taskStatuses from '@/store/task-statuses';
 import strapi from '@/lib/strapi';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {},
   mutations: {},
   getters: {
@@ -21,5 +22,12 @@ export default new Vuex.Store({
     user,
     auth,
     projects,
+    taskStatuses,
   },
 });
+
+store.subscribeAction((action) => {
+  if (action.type === 'projects/list') store.dispatch('taskStatuses/list');
+});
+
+export default store;

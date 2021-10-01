@@ -44,16 +44,15 @@ export default {
 <style lang="scss">
 html,
 body {
-  overflow: hidden;
+  overflow-y: hidden;
 }
 
-.v-application {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow: hidden;
+.v-application--wrap {
+  max-height: 100vh;
+}
+
+.v-main {
+  height: 100%;
 }
 
 .v-main__wrap {
@@ -61,19 +60,12 @@ body {
   overflow-x: hidden;
 }
 
-.container.fill-height > .row {
-  max-width: initial;
-  width: 100%;
+.cursor--pointer {
+  cursor: pointer;
 }
 
-.container.fill-height {
-  flex-direction: column !important;
-  align-items: initial !important;
+.css-transition {
+  transition: all 250ms ease-in-out;
 }
 
-.container.fill-height > .row {
-  flex: 1 1 auto !important;
-
-  &.flex-grow-0 { flex-grow: 0 !important; }
-}
 </style>

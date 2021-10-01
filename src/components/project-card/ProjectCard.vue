@@ -1,17 +1,29 @@
 <template>
   <v-card
-    class="pa-4 text-center"
+    class="text-center css-transition"
+    :class="{
+      'cursor--pointer': hover
+    }"
+    :elevation="hover ? 4 : 2"
+    :to="$_project_url"
   >
-    <component
-      :is="view"
-      :project="project"
-    />
+    <section class="pa-8">
+      <component
+        :is="view"
+        :project="project"
+        :hover="hover"
+      />
+    </section>
+
+    <project-card-linear-progress :project="project"/>
   </v-card>
 </template>
 
 <script>
 import ProjectCardListView from './ProjectCardListView.vue';
 import ProjectCardGridView from './ProjectCardGridView.vue';
+import ProjectCardLinearProgress from './ProjectCardLinearProgress.vue';
+import projectMixin from '@/mixins/project';
 
 export default {
   props: {
@@ -25,10 +37,16 @@ export default {
       default: 'grid',
       validator: (val) => ['grid', 'list'].includes(val),
     },
+    hover: {
+      type: Boolean,
+      required: true,
+    },
   },
+  mixins: [projectMixin],
   components: {
     ProjectCardListView,
     ProjectCardGridView,
+    ProjectCardLinearProgress,
   },
   data: () => ({
     selection: 1,

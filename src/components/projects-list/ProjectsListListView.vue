@@ -19,7 +19,9 @@
           :key="project.id"
           cols="12"
         >
-          <project-card :project="project" view-type="list"/>
+          <v-hover v-slot="{ hover }">
+            <project-card :project="project" view-type="list" :hover="hover" />
+          </v-hover>
         </v-col>
       </v-row>
     </v-slide-x-transition>
