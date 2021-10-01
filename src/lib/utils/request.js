@@ -18,7 +18,7 @@ async function request(endpoint, { body, ...customConfig } = {}) {
 
     if (response.ok) return await response.json();
 
-    if (response.statusCode === 401) eventHub.$emit(UNAUTHORIZED_EVENT);
+    if (response.status === 403) eventHub.$emit(UNAUTHORIZED_EVENT);
 
     throw response;
   } catch (err) {
