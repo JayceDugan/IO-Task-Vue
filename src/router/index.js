@@ -2,6 +2,9 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Tasks from '../views/Tasks.vue';
+import Calendar from '../views/Calendar.vue';
+import Kanban from '../views/Kanban.vue';
+import Contacts from '../views/Contacts.vue';
 import Projects from '../views/Projects.vue';
 import AccountFormSplashScreen from '../views/AccountFormSplashScreen.vue';
 import store from '../store';
@@ -27,18 +30,17 @@ const routes = [
   {
     path: '/kanban-desk',
     name: 'Kanban Desk',
+    component: Kanban,
   },
   {
     path: '/calendar',
     name: 'Calendar',
+    component: Calendar,
   },
   {
     path: '/contacts',
     name: 'Contacts',
-  },
-  {
-    path: '/ui-kit',
-    name: 'UI Kit',
+    component: Contacts,
   },
   {
     path: '/create-account',
