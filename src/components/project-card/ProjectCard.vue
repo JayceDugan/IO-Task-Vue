@@ -7,7 +7,13 @@
     :elevation="hover ? 4 : 2"
     :to="$_project_url"
   >
-    <section class="pa-8">
+    <section
+      class="pa-3"
+      :class="{
+        'pa-3': view === 'list',
+        'pa-8': view === 'grid',
+      }"
+    >
       <component
         :is="view"
         :project="project"
@@ -15,7 +21,7 @@
       />
     </section>
 
-    <project-card-linear-progress :project="project"/>
+    <project-card-linear-progress v-if="view === 'grid'" :project="project" />
   </v-card>
 </template>
 

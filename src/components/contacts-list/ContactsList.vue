@@ -1,9 +1,9 @@
 <template>
   <section>
     <component
-      v-if="loading || projects.length > 0"
+      v-if="loading || users.length"
       :is="activeLayout"
-      :projects="projects"
+      :users="users"
       :loading="loading"
       :errors="errors"
     />
@@ -13,8 +13,8 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import GridView from './ProjectsListGridView.vue';
-import ListView from './ProjectsListListView.vue';
+import GridView from './ContactsListGridView.vue';
+import ListView from './ContactsListListView.vue';
 
 export default {
   components: {
@@ -32,8 +32,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      projects: 'projects/data',
-      projectsLayout: 'projects/layout',
+      users: 'users/all',
+      usersLayout: 'users/layout',
     }),
     activeLayout() {
       const map = {
@@ -41,17 +41,17 @@ export default {
         list: 'listView',
       };
 
-      return map[this.projectsLayout];
+      return map[this.usersLayout];
     },
   },
   methods: {
     ...mapActions({
-      listProjects: 'projects/list',
+      listUsers: 'users/list',
     }),
     loadProjects() {
       this.loading = true;
 
-      this.listProjects()
+      this.listUsers()
         .catch((error) => {
           this.errors.loadingProjects = true;
 
