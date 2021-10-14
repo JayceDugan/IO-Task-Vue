@@ -3,6 +3,8 @@ import Vuex from 'vuex';
 import user from '@/store/user';
 import auth from '@/store/auth';
 import projects from '@/store/projects';
+import tasks from '@/store/tasks';
+import users from '@/store/users';
 import taskStatuses from '@/store/task-statuses';
 import strapi from '@/lib/strapi';
 
@@ -23,6 +25,8 @@ const store = new Vuex.Store({
     auth,
     projects,
     taskStatuses,
+    tasks,
+    users,
   },
 });
 
