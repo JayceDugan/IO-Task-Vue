@@ -2,7 +2,7 @@
   <v-app>
     <Header v-if="isLoggedIn" />
     <sidebar v-if="isLoggedIn" />
-    <v-main>
+    <v-main class="greyAlt">
       <v-fade-transition mode="out-in" appear>
         <router-view />
       </v-fade-transition>
@@ -68,4 +68,8 @@ body {
   transition: all 250ms ease-in-out;
 }
 
+.w-100 { width: 100%; }
+
+.cursor-move { cursor: move; }
+.cursor-pointer { cursor: pointer; }
 </style>
