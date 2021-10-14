@@ -5,4 +5,6 @@ export default (store) => ({
   auth: authAPI,
   projects: contentAPIGenerator('/projects', store),
   taskStatus: contentAPIGenerator('/task-statuses', store),
+  tasks: contentAPIGenerator('/tasks', store),
+  users: contentAPIGenerator('/users', store),
 });
