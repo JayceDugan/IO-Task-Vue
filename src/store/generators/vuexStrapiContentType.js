@@ -13,6 +13,10 @@ import {
   SET_ERROR_DELETING,
 } from './mutation-types';
 
+import { capitalizeString } from '@/lib/stringHelpers';
+
+const crudVerbs = ['loading', 'creating', 'updating', 'deleting'];
+
 const strapiModuleRequest = ({ commit, rootGetters }, settings) => new Promise(
   (resolve, reject) => Promise.all([
     commit(settings.inProgressMutation, true),
@@ -31,26 +35,18 @@ const createVuexStrapiContentModule = (options) => ({
   namespaced: true,
   state: {
     data: [],
-    loading: false,
-    creating: false,
-    updating: false,
-    deleting: false,
-    errorLoading: false,
-    errorCreating: false,
-    errorUpdating: false,
-    errorDeleting: false,
+    ...crudVerbs.map((key) => ({
+      [key]: false,
+      ['error'.concat(capitalizeString(key))]: false,
+    })),
     ...options.state,
   },
   getters: {
     data: (state) => state.data,
-    loading: (state) => state.loading,
-    creating: (state) => state.creating,
-    updating: (state) => state.updating,
-    deleting: (state) => state.deleting,
-    errorLoading: (state) => state.errorLoading,
-    errorCreating: (state) => state.errorCreating,
-    errorUpdating: (state) => state.errorUpdating,
-    errorDeleting: (state) => state.errorDeleting,
+    ...crudVerbs.map((key) => ({
+      [key]: (state) => state[key],
+      ['error'.concat(capitalizeString(key))]: (state) => state['error'.concat(capitalizeString(key))],
+    })),
     ...options.getters,
   },
   actions: {
