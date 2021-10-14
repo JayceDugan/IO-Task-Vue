@@ -1,7 +1,10 @@
 <template>
   <inner-dashboard-view>
     <template v-slot:main>
-      <task-list :tasks="tasks">
+      <task-list
+        :loading="loading"
+        :tasks="tasks"
+      >
         <template v-slot:empty>
           <v-sheet
             width="460"
@@ -43,105 +46,112 @@ export default {
     TaskList,
   },
   data: () => ({
-    tasks: [],
-    // tasks: [
-    //   {
-    //     title: 'Template description',
-    //     complete: false,
-    //     subtasksCount: 2,
-    //     subtasksComplete: 3,
-    //     commentsCount: 5,
-    //     category: 'Sketch',
-    //   },
-    //   {
-    //     title: 'Budget and Contract',
-    //     complete: false,
-    //     subtasksCount: 2,
-    //     subtasksComplete: 3,
-    //     commentsCount: 5,
-    //     category: 'Sketch',
-    //   },
-    //   {
-    //     title: 'Search for a UI Kit',
-    //     complete: false,
-    //     subtasksCount: 2,
-    //     subtasksComplete: 3,
-    //     commentsCount: 5,
-    //     category: 'Sketch',
-    //   },
-    //   {
-    //     title: 'Template description',
-    //     complete: false,
-    //     subtasksCount: 2,
-    //     subtasksComplete: 3,
-    //     commentsCount: 5,
-    //     category: 'Sketch',
-    //   },
-    //   {
-    //     title: 'Template description',
-    //     complete: false,
-    //     subtasksCount: 2,
-    //     subtasksComplete: 3,
-    //     commentsCount: 5,
-    //     category: 'Sketch',
-    //   },
-    //   {
-    //     title: 'Template description',
-    //     complete: false,
-    //     subtasksCount: 2,
-    //     subtasksComplete: 3,
-    //     commentsCount: 5,
-    //     category: 'Sketch',
-    //   },
-    //   {
-    //     title: 'Template description',
-    //     complete: false,
-    //     subtasksCount: 2,
-    //     subtasksComplete: 3,
-    //     commentsCount: 5,
-    //     category: 'Sketch',
-    //   },
-    //   {
-    //     title: 'Template description',
-    //     complete: false,
-    //     subtasksCount: 2,
-    //     subtasksComplete: 3,
-    //     commentsCount: 5,
-    //     category: 'Sketch',
-    //   },
-    //   {
-    //     title: 'Template description',
-    //     complete: false,
-    //     subtasksCount: 2,
-    //     subtasksComplete: 3,
-    //     commentsCount: 5,
-    //     category: 'Sketch',
-    //   },
-    //   {
-    //     title: 'Template description',
-    //     complete: false,
-    //     subtasksCount: 2,
-    //     subtasksComplete: 3,
-    //     commentsCount: 5,
-    //     category: 'Sketch',
-    //   },
-    //   {
-    //     title: 'Template description',
-    //     complete: false,
-    //     subtasksCount: 2,
-    //     subtasksComplete: 3,
-    //     commentsCount: 5,
-    //     category: 'Sketch',
-    //   },
-    //   {
-    //     title: 'Template description',
-    //     complete: false,
-    //     subtasksCount: 2,
-    //     subtasksComplete: 3,
-    //     commentsCount: 5,
-    //     category: 'Sketch',
-    //   },
-    // ],
+    loading: true,
+    tasks: [
+      {
+        title: 'Template description',
+        complete: false,
+        subtasksCount: 2,
+        subtasksComplete: 3,
+        commentsCount: 5,
+        category: 'Sketch',
+      },
+      {
+        title: 'Budget and Contract',
+        complete: false,
+        subtasksCount: 2,
+        subtasksComplete: 3,
+        commentsCount: 5,
+        category: 'Sketch',
+      },
+      {
+        title: 'Search for a UI Kit',
+        complete: false,
+        subtasksCount: 2,
+        subtasksComplete: 3,
+        commentsCount: 5,
+        category: 'Sketch',
+      },
+      {
+        title: 'Template description',
+        complete: false,
+        subtasksCount: 2,
+        subtasksComplete: 3,
+        commentsCount: 5,
+        category: 'Sketch',
+      },
+      {
+        title: 'Template description',
+        complete: false,
+        subtasksCount: 2,
+        subtasksComplete: 3,
+        commentsCount: 5,
+        category: 'Sketch',
+      },
+      {
+        title: 'Template description',
+        complete: false,
+        subtasksCount: 2,
+        subtasksComplete: 3,
+        commentsCount: 5,
+        category: 'Sketch',
+      },
+      {
+        title: 'Template description',
+        complete: false,
+        subtasksCount: 2,
+        subtasksComplete: 3,
+        commentsCount: 5,
+        category: 'Sketch',
+      },
+      {
+        title: 'Template description',
+        complete: false,
+        subtasksCount: 2,
+        subtasksComplete: 3,
+        commentsCount: 5,
+        category: 'Sketch',
+      },
+      {
+        title: 'Template description',
+        complete: false,
+        subtasksCount: 2,
+        subtasksComplete: 3,
+        commentsCount: 5,
+        category: 'Sketch',
+      },
+      {
+        title: 'Template description',
+        complete: false,
+        subtasksCount: 2,
+        subtasksComplete: 3,
+        commentsCount: 5,
+        category: 'Sketch',
+      },
+      {
+        title: 'Template description',
+        complete: false,
+        subtasksCount: 2,
+        subtasksComplete: 3,
+        commentsCount: 5,
+        category: 'Sketch',
+      },
+      {
+        title: 'Template description',
+        complete: false,
+        subtasksCount: 2,
+        subtasksComplete: 3,
+        commentsCount: 5,
+        category: 'Sketch',
+      },
+    ],
   }),
+  mounted() {
+    const that = this;
+
+    setTimeout(() => {
+      that.loading = false;
+    }, 1000);
+  },
 };
 </script>

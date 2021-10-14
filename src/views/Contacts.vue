@@ -4,16 +4,16 @@
       <projects-titlebar />
     </template>
     <template v-slot:main>
-      <projects-list>
+      <contacts-list>
         <template v-slot:empty>
           <empty-dashboard-view
-            title="No projects found?"
-            message="Try to assign more tasks to
-            your employees or create a new project from scratch"
+            title="No contacts found?"
+            message="Try to add more contacts from your personal
+account or invite your friends"
           >
             <template v-slot:illustration>
               <v-img
-                :src="require('@/assets/illustrations/undraw_preferences_uuo2.svg')"
+                :src="require('@/assets/illustrations/undraw_setup_wizard_r6mr.svg')"
                 max-width="100%"
                 class="mb-5"
               />
@@ -24,13 +24,13 @@
               small
               @click="drawer = !drawer"
             >
-              Add New Project
+              Add New Contact
             </v-btn>
 
             <create-new-project-drawer v-model="drawer" />
           </empty-dashboard-view>
         </template>
-      </projects-list>
+      </contacts-list>
     </template>
   </inner-dashboard-view>
 </template>
@@ -38,7 +38,7 @@
 <script>
 import createNewProjectDrawer from '@/components/drawers/createNewProjectDrawer.vue';
 import ProjectsTitlebar from '@/components/generic/ProjectsTitlebar.vue';
-import ProjectsList from '@/components/projects-list/ProjectsList.vue';
+import ContactsList from '@/components/contacts-list/ContactsList.vue';
 import InnerDashboardView from '@/layouts/InnerDashboardView.vue';
 import EmptyDashboardView from '@/layouts/EmptyDashboardView.vue';
 
@@ -49,7 +49,7 @@ export default {
     EmptyDashboardView,
     createNewProjectDrawer,
     ProjectsTitlebar,
-    ProjectsList,
+    ContactsList,
   },
   data: () => ({
     drawer: false,
