@@ -41,6 +41,18 @@ const createVuexStrapiContentModule = (options) => ({
     errorDeleting: false,
     ...options.state,
   },
+  getters: {
+    data: (state) => state.data,
+    loading: (state) => state.loading,
+    creating: (state) => state.creating,
+    updating: (state) => state.updating,
+    deleting: (state) => state.deleting,
+    errorLoading: (state) => state.errorLoading,
+    errorCreating: (state) => state.errorCreating,
+    errorUpdating: (state) => state.errorUpdating,
+    errorDeleting: (state) => state.errorDeleting,
+    ...options.getters,
+  },
   actions: {
     load(vuexInstance) {
       return strapiModuleRequest(vuexInstance, {
@@ -125,18 +137,6 @@ const createVuexStrapiContentModule = (options) => ({
       state.data = [...state.data, payload];
     },
     ...options.mutations,
-  },
-  getters: {
-    data: (state) => state.data,
-    loading: (state) => state.loading,
-    creating: (state) => state.creating,
-    updating: (state) => state.updating,
-    deleting: (state) => state.deleting,
-    errorLoading: (state) => state.errorLoading,
-    errorCreating: (state) => state.errorCreating,
-    errorUpdating: (state) => state.errorUpdating,
-    errorDeleting: (state) => state.errorDeleting,
-    ...options.getters,
   },
 });
 
