@@ -2,7 +2,7 @@
   <v-container
     fluid
     fill-height
-    class="greyAlt pa-6 align-start"
+    class="pa-6 align-start"
   >
     <v-row class="flex-grow-0">
       <v-col cols="12">
