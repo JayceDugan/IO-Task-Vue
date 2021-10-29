@@ -32,7 +32,6 @@ const contentAPIGenerator = (endpoint, vuexStore) => {
 
         return requestQueue.process()
           .then((returnedResults) => {
-            debugger;
             results = [...results, ...returnedResults.data];
 
             if (returnedResults.errors.length) returnedResults.errors.map((err) => { throw err; });
