@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import user from '@/store/user';
+import alerts from '@/store/alerts';
+import notifications from '@/store/notifications';
 import auth from '@/store/auth';
 import projects from '@/store/projects';
 import tasks from '@/store/tasks';
@@ -33,6 +35,8 @@ const store = new Vuex.Store({
     taskStatuses,
     tasks,
     users,
+    alerts,
+    notifications,
     events,
   },
 });

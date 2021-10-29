@@ -71,7 +71,11 @@
                 pagination-suffix="Events"
               >
                 <template v-slot:empty>
-                  Events Not Available
+                  {{
+                    eventsForbidden
+                      ? 'Events data is not permitted to be viewed by this account.'
+                      : 'Lorem Ipsum Dolor Amet'
+                  }}
                 </template>
                 <template v-slot:slide-icon>mdi-calendar</template>
                 <template v-slot:slide-icon-label="{ item }">
@@ -121,6 +125,7 @@ export default {
     ...mapGetters({
       tasks: 'tasks/data',
       events: 'events/data',
+      eventsForbidden: 'events/isForbidden',
     }),
     swiper() {
       return this.$refs.mySwiper.$refs.slider.$swiper;

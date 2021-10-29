@@ -2,6 +2,7 @@
   <v-app>
     <Header v-if="isLoggedIn" />
     <sidebar v-if="isLoggedIn" />
+    <alerts-manager v-if="isLoggedIn" />
     <v-main class="greyAlt">
       <v-fade-transition mode="out-in" appear>
         <router-view />
@@ -13,14 +14,16 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import eventHub, { UNAUTHORIZED_EVENT } from './plugins/eventHub';
-import Sidebar from '@/components/sidebar/Sidebar.vue';
 import Header from '@/components/header/Header.vue';
+import Sidebar from '@/components/sidebar/Sidebar.vue';
+import AlertsManager from '@/components/alerts-manager/AlertsManager.vue';
 
 export default {
   name: 'App',
   components: {
     Header,
     Sidebar,
+    AlertsManager,
   },
   computed: {
     ...mapGetters({

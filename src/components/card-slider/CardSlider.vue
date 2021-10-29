@@ -3,6 +3,7 @@
     <v-card-title class="mb-6 blueGrey--text pa-0">{{ title }}</v-card-title>
     <v-card-text class="pa-0">
       <slider
+        v-if="items.length"
         ref="swiper"
         :items="items"
         :options="swiperOptions"
@@ -26,6 +27,7 @@
           </div>
         </template>
       </slider>
+      <slot v-else name="empty"></slot>
       <slider-card-pagination
         v-if="items.length"
         :index="swiperSlideIndex"
