@@ -27,24 +27,23 @@ const contentAPIGenerator = (endpoint, vuexStore) => {
         start += limit;
       };
 
-      const runBatch = () => {
-        // Enqueue n requests
-        for (let i = 1; i <= requestQueue.maxWorkers; i += 1) addRequest();
+      const loadData = () => {
+        addRequest();
 
         return requestQueue.process()
           .then((returnedResults) => {
             results = [...results, ...returnedResults];
 
-            if (returnedResults.length < start) return results;
+            if (returnedResults.length < limit) return results;
 
-            return runBatch();
+            return loadData();
           })
           .catch((err) => {
             console.error(err.message);
           });
       };
 
-      return runBatch();
+      return loadData();
     },
     // Count {content-type} entries
     count() {
