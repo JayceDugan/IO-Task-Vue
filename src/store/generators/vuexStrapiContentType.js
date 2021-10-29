@@ -24,13 +24,13 @@ const strapiModuleRequest = ({ commit, rootGetters }, settings) => new Promise(
     commit(settings.errorMutation, false),
     rootGetters.strapi.api[settings.strapiKey][settings.moduleAction](settings.modulePayload),
   ])
-    .then(([,, response]) => {
-      resolve(commit(settings.responseMutation, response));
-    })
+    .then(([,, response]) => resolve(commit(settings.responseMutation, response)))
     .catch((err) => {
       commit(settings.errorMutation, true);
-      if (err.status === 403) commit(SET_FORBIDDEN, true);
-      if (err.status === 500) commit(SET_FORBIDDEN, true);
+
+      if (err.message) console.error(err.message);
+      else if (err.status === 403) commit(SET_FORBIDDEN, true);
+
       reject(err);
     })
     .finally(() => commit(settings.inProgressMutation, false)),

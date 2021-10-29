@@ -39,13 +39,16 @@ class Queue {
   };
 
   process() {
-    let results = [];
+    const result = {
+      data: [],
+      errors: []
+    }
     const queue = this
 
     return new Promise((resolve) => {
       const performNextAction = () => {
         if (!queue.isEmpty && queue.workersAvailable) run();
-        else if (queue.activeWorkers === 0 && queue.isEmpty) resolve(results);
+        else if (queue.activeWorkers === 0 && queue.isEmpty) resolve(result);
       };
 
       const run = () => {
@@ -54,13 +57,13 @@ class Queue {
         queue.addWorker();
 
         return nextItem()
-          .then((result) => {
-            results = [...results, ...result]
+          .then((processedResult) => {
+            result.data = [...result.data, ...processedResult]
             queue.releaseWorker();
             performNextAction();
           })
           .catch((error) => {
-            // results.push(error);
+            result.errors.push(error)
             queue.releaseWorker();
             performNextAction();
           });
