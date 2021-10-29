@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 import GridView from './ProjectsListGridView.vue';
 import ListView from './ProjectsListListView.vue';
 
@@ -45,13 +45,10 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      listProjects: 'projects/list',
-    }),
     loadProjects() {
       this.loading = true;
 
-      this.listProjects()
+      return this.$store.dispatch('projects/load')
         .catch((error) => {
           this.errors.loadingProjects = true;
 

@@ -4,6 +4,7 @@ import user from '@/store/user';
 import auth from '@/store/auth';
 import projects from '@/store/projects';
 import tasks from '@/store/tasks';
+import events from '@/store/events';
 import users from '@/store/users';
 import taskStatuses from '@/store/task-statuses';
 import strapi from '@/lib/strapi';
@@ -20,6 +21,11 @@ const store = new Vuex.Store({
       });
     },
   },
+  actions: {
+    init({ dispatch, rootGetters }) {
+      if (rootGetters['user/isLoggedIn']) ['tasks', 'events'].map((ctype) => dispatch(`${ctype}/load`));
+    },
+  },
   modules: {
     user,
     auth,
@@ -27,6 +33,7 @@ const store = new Vuex.Store({
     taskStatuses,
     tasks,
     users,
+    events,
   },
 });
 

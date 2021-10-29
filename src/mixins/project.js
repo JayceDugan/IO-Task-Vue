@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import config from '@/lib/strapi/utils/config';
 
 export default {
@@ -77,13 +76,6 @@ export default {
     },
     $_project_url() {
       return '/projects/'.concat(this.$_project_uuid);
-    },
-  },
-  filters: {
-    projectDate: (val) => {
-      if (!val) return '';
-
-      return dayjs(val).format('DD MMM YYYY');
     },
   },
 };

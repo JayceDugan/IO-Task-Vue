@@ -1,4 +1,7 @@
 export const SET_DATA = 'SET_DATA';
+
+export const SET_FORBIDDEN = 'SET_FORBIDDEN';
+
 export const CREATE_DATA_ITEM = 'ADD_DATA_ITEM';
 export const UPDATE_DATA_ITEM = 'UPDATE_DATA_ITEM';
 export const DELETE_DATA_ITEM = 'DELETE_DATA_ITEM';

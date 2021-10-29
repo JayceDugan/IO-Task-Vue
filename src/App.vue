@@ -29,6 +29,7 @@ export default {
   },
   mounted() {
     this.setEventHubListeners();
+    this.$store.dispatch('init');
   },
   methods: {
     ...mapActions({

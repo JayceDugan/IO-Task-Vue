@@ -3920,6 +3920,13 @@
     "domelementtype" "^2.0.1"
     "entities" "^2.0.0"
 
+"dom7@^2.1.5":
+  "integrity" "sha512-xnhwVgyOh3eD++/XGtH+5qBwYTgCm0aW91GFgPJ3XG+jlsRLyJivnbP0QmUBFhI+Oaz9FV0s7cxgXHezwOEBYA=="
+  "resolved" "https://registry.npmjs.org/dom7/-/dom7-2.1.5.tgz"
+  "version" "2.1.5"
+  dependencies:
+    "ssr-window" "^2.0.0"
+
 "domain-browser@^1.1.1":
   "integrity" "sha512-jnjyiM6eRyZl2H+W8Q/zLMA481hzi0eszAaBUzIVnmYVDBbnLxVNnfu1HgEBvCbL+71FrxMl3E6lpKH7Ge3OXA=="
   "resolved" "https://registry.npmjs.org/domain-browser/-/domain-browser-1.2.0.tgz"
@@ -9691,6 +9698,11 @@
     "safer-buffer" "^2.0.2"
     "tweetnacl" "~0.14.0"
 
+"ssr-window@^2.0.0":
+  "integrity" "sha512-NXzN+/HPObKAx191H3zKlYomE5WrVIkoCB5IaSdvKokxTpjBdWfr0RaP+1Z5KOfDT0ZVz+2tdtiBkhsEQ9p+0A=="
+  "resolved" "https://registry.npmjs.org/ssr-window/-/ssr-window-2.0.0.tgz"
+  "version" "2.0.0"
+
 "ssri@^6.0.1":
   "integrity" "sha512-cepbSq/neFK7xB6A50KHN0xHDotYzq58wWCa5LeWqnPrHG8GzfEjO/4O8kpmcGW+oaxkvhEJCWgbgNk4/ZV93Q=="
   "resolved" "https://registry.npmjs.org/ssri/-/ssri-6.0.2.tgz"
@@ -9999,6 +10011,14 @@
     "stable" "^0.1.8"
     "unquote" "~1.1.1"
     "util.promisify" "~1.0.0"
+
+"swiper@^5.2.0", "swiper@^5.4.5":
+  "integrity" "sha512-7QjA0XpdOmiMoClfaZ2lYN6ICHcMm72LXiY+NF4fQLFidigameaofvpjEEiTQuw3xm5eksG5hzkaRsjQX57vtA=="
+  "resolved" "https://registry.npmjs.org/swiper/-/swiper-5.4.5.tgz"
+  "version" "5.4.5"
+  dependencies:
+    "dom7" "^2.1.5"
+    "ssr-window" "^2.0.0"
 
 "symbol-observable@^1.1.0":
   "integrity" "sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ=="
@@ -10582,6 +10602,11 @@
   "integrity" "sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ=="
   "resolved" "https://registry.npmjs.org/vm-browserify/-/vm-browserify-1.1.2.tgz"
   "version" "1.1.2"
+
+"vue-awesome-swiper@^4.1.1":
+  "integrity" "sha512-50um10t6N+lJaORkpwSi1wWuMmBI1sgFc9Znsi5oUykw2cO5DzLaBHcO2JNX21R+Ue4TGoIJDhhxjBHtkFrTEQ=="
+  "resolved" "https://registry.npmjs.org/vue-awesome-swiper/-/vue-awesome-swiper-4.1.1.tgz"
+  "version" "4.1.1"
 
 "vue-cli-plugin-vuetify@~2.4.2":
   "integrity" "sha512-aJXkzz3CbN/D1/aJ53slsp8hGaruQHhj/mkNjsfpkqhGglLex7UBnvcDwi5+D1tNk+XlddANLgRe9tmCFMorVA=="

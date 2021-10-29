@@ -25,7 +25,6 @@
               <span>
                 {{ task.title }}
               </span>
-
                   <v-spacer />
 
                   <v-btn
@@ -94,7 +93,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      loadTasks: 'tasks/list',
+      loadTasks: 'tasks/load',
     }),
     getChipColor() {
       return this.chipColors[Math.floor(Math.random() * this.chipColors.length)];

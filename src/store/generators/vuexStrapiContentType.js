@@ -1,5 +1,6 @@
 import {
   SET_DATA,
+  SET_FORBIDDEN,
   CREATE_DATA_ITEM,
   UPDATE_DATA_ITEM,
   DELETE_DATA_ITEM,
@@ -26,6 +27,7 @@ const strapiModuleRequest = ({ commit, rootGetters }, settings) => new Promise(
     .then(([,, response]) => resolve(commit(settings.responseMutation, response)))
     .catch((err) => {
       commit(settings.errorMutation, true);
+      if (err.statusText === 403) commit(SET_FORBIDDEN, true);
       reject(err);
     })
     .finally(() => commit(settings.inProgressMutation, false)),
@@ -35,18 +37,22 @@ const createVuexStrapiContentModule = (options) => ({
   namespaced: true,
   state: {
     data: [],
-    ...crudVerbs.map((key) => ({
+    forbidden: false,
+    ...crudVerbs.reduce((acc, key) => ({
+      ...acc,
       [key]: false,
       ['error'.concat(capitalizeString(key))]: false,
-    })),
+    }), {}),
     ...options.state,
   },
   getters: {
     data: (state) => state.data,
-    ...crudVerbs.map((key) => ({
+    isForbidden: (state) => state.forbidden,
+    ...crudVerbs.reduce((acc, key) => ({
+      ...acc,
       [key]: (state) => state[key],
       ['error'.concat(capitalizeString(key))]: (state) => state['error'.concat(capitalizeString(key))],
-    })),
+    }), {}),
     ...options.getters,
   },
   actions: {
@@ -58,7 +64,8 @@ const createVuexStrapiContentModule = (options) => ({
         responseMutation: SET_DATA,
         moduleAction: 'list',
         modulePayload: null,
-      });
+      })
+        .catch((err) => console.error(`Error Loading ${options.strapiKey}. ${err.status} (${err.statusText}).`));
     },
     create(vuexInstance, payload) {
       return strapiModuleRequest(vuexInstance, {
@@ -68,7 +75,8 @@ const createVuexStrapiContentModule = (options) => ({
         responseMutation: CREATE_DATA_ITEM,
         moduleAction: 'create',
         modulePayload: payload,
-      });
+      })
+        .catch((err) => console.error(`Error Creating ${options.strapiKey}. ${err.status} (${err.statusText}).`));
     },
     update(vuexInstance, payload) {
       return strapiModuleRequest(vuexInstance, {
@@ -78,7 +86,8 @@ const createVuexStrapiContentModule = (options) => ({
         responseMutation: UPDATE_DATA_ITEM,
         moduleAction: 'update',
         modulePayload: payload,
-      });
+      })
+        .catch((err) => console.error(`Error Updating ${options.strapiKey}. ${err.status} (${err.statusText}).`));
     },
     delete(vuexInstance, payload) {
       return strapiModuleRequest(vuexInstance, {
@@ -88,7 +97,8 @@ const createVuexStrapiContentModule = (options) => ({
         responseMutation: DELETE_DATA_ITEM,
         moduleAction: 'delete',
         modulePayload: payload,
-      });
+      })
+        .catch((err) => console.error(`Error Updating ${options.strapiKey}. ${err.status} (${err.statusText}).`));
     },
     reset({ commit }) {
       commit(SET_DATA, []);
@@ -122,6 +132,9 @@ const createVuexStrapiContentModule = (options) => ({
     },
     [SET_DATA]: (state, payload) => {
       state.data = payload;
+    },
+    [SET_FORBIDDEN]: (state, payload) => {
+      state.forbidden = payload;
     },
     [CREATE_DATA_ITEM]: (state, payload) => {
       state.data = [...state.data, payload];
