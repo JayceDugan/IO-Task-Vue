@@ -1,3 +1,4 @@
+import Queue from '@/lib/data-structures/queue';
 import request from '@/lib/utils/request';
 import config from '@/lib/strapi/utils/config';
 
@@ -11,7 +12,36 @@ const contentAPIGenerator = (endpoint, vuexStore) => {
   return {
     // Get a list of {content-type} entries
     list() {
-      return request.get(config.baseDomain.concat(endpoint, '/'), authHeaders);
+      let results = [];
+      let start = 0;
+      const limit = 50;
+      const requestQueue = new Queue();
+
+      const createRequest = (startParam, limitParam) => () => request.get(
+        config.baseDomain.concat(endpoint, '?_start=', startParam, '&_limit=', limitParam),
+        authHeaders,
+      );
+
+      const addRequest = () => {
+        requestQueue.enqueue(createRequest(start, limit));
+        start += limit;
+      };
+
+      const loadData = () => {
+        addRequest();
+
+        return requestQueue.process()
+          .then((returnedResults) => {
+            results = [...results, ...returnedResults.data];
+
+            if (returnedResults.errors.length) returnedResults.errors.map((err) => { throw err; });
+            if (returnedResults.data.length < limit) return results;
+
+            return loadData();
+          });
+      };
+
+      return loadData();
     },
     // Count {content-type} entries
     count() {

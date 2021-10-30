@@ -3,9 +3,12 @@
     <v-spacer />
     <v-hover v-slot="{ hover }">
       <v-btn
-        :color="hover ? 'primary' : 'blueGrey'"
-        plain
+        :color="(hover || layout === 'list') ? 'primary' : 'blueGrey'"
         :disabled="noProjects"
+        plain
+        :class="{
+          'v-btn--active': layout === 'list'
+        }"
         @click="setLayout('list')"
       >
         <v-icon left>
@@ -16,9 +19,12 @@
     </v-hover>
     <v-hover v-slot="{ hover }">
       <v-btn
-        :color="hover ? 'primary' : 'blueGrey'"
+        :color="(hover || layout === 'grid') ? 'primary' : 'blueGrey'"
         plain
         :disabled="noProjects"
+        :class="{
+          'v-btn--active': layout === 'grid'
+        }"
         @click="setLayout('grid')"
       >
         <v-icon left>
@@ -56,7 +62,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      projects: 'projects/all',
+      projects: 'projects/data',
+      layout: 'projects/layout',
     }),
     noProjects() {
       return !Array.isArray(this.projects) || this.projects.length <= 0;

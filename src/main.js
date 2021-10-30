@@ -1,15 +1,26 @@
+// Base Imports ----------------------------------
 import Vue from 'vue';
 import App from './App.vue';
 import './registerServiceWorker';
+
+// Misc Imports ----------------------------------
 import router from './router';
 import store from './store';
-import vuetify from './plugins/vuetify';
+
+// Plugin Imports --------------------------------
 import vuex from './plugins/vuex';
+import vuetify from './plugins/vuetify';
+import './plugins/vueAwesomeSwiper';
+import './plugins/filters';
+
+// Font Imports ----------------------------------
 import '@fontsource/rubik';
 
+// Config Settings -------------------------------
 Vue.config.productionTip = false;
 
-Vue.prototype.$bus = new Vue({});
+// Prototype Registrations -----------------------
+if (!Object.prototype.hasOwnProperty.call(Vue, '$bus')) Vue.prototype.$bus = new Vue({});
 
 new Vue({
   router,

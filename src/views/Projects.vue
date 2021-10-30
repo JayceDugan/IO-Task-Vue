@@ -6,21 +6,18 @@
     <template v-slot:main>
       <projects-list>
         <template v-slot:empty>
-          <v-sheet
-            width="460"
-            class="mx-auto text-center"
-            elevation="0"
-            color="transparent"
+          <empty-dashboard-view
+            title="No projects found?"
+            message="Try to assign more tasks to
+            your employees or create a new project from scratch"
           >
-            <v-img
-              :src="require('@/assets/illustrations/undraw_preferences_uuo2.svg')"
-              max-width="100%"
-              class="mb-5"
-            />
-            <h3 class="text-h3 mb-1 text-center">No projects found?</h3>
-            <p class="blueGrey--text text-center text-h4 font-weight-light">
-              Try to assign more tasks to your employees or create a new project from scratch
-            </p>
+            <template v-slot:illustration>
+              <v-img
+                :src="require('@/assets/illustrations/undraw_preferences_uuo2.svg')"
+                max-width="100%"
+                class="mb-5"
+              />
+            </template>
             <v-btn
               color="primary"
               class="mx-auto"
@@ -31,7 +28,7 @@
             </v-btn>
 
             <create-new-project-drawer v-model="drawer" />
-          </v-sheet>
+          </empty-dashboard-view>
         </template>
       </projects-list>
     </template>
@@ -43,11 +40,13 @@ import createNewProjectDrawer from '@/components/drawers/createNewProjectDrawer.
 import ProjectsTitlebar from '@/components/generic/ProjectsTitlebar.vue';
 import ProjectsList from '@/components/projects-list/ProjectsList.vue';
 import InnerDashboardView from '@/layouts/InnerDashboardView.vue';
+import EmptyDashboardView from '@/layouts/EmptyDashboardView.vue';
 
 export default {
   name: 'Projects',
   components: {
     InnerDashboardView,
+    EmptyDashboardView,
     createNewProjectDrawer,
     ProjectsTitlebar,
     ProjectsList,
