@@ -1,5 +1,8 @@
 <template>
-  <v-card class="pa-6">
+  <v-card
+    class="pa-6"
+    elevation="0"
+  >
     <v-card-title class="mb-6 blueGrey--text pa-0">{{ title }}</v-card-title>
     <v-card-text class="pa-0">
       <slider
